@@ -4,6 +4,11 @@ vim.opt.fillchars = { eob = " " }
 
 vim.opt.swapfile = false
 vim.opt.wrap = false
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
 vim.g.mapleader = " "
 vim.keymap.set('n', '<leader>o', ":update<CR> :source<CR>")
