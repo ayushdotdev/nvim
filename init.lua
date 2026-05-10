@@ -18,6 +18,8 @@ vim.keymap.set('n', '<leader>o', ":update<CR> :source<CR>")
 vim.keymap.set('n', '<leader>w', ":write<CR>")
 vim.keymap.set('n', '<leader>q', ":quit<CR>")
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader><leader>', ":Pick files<CR>")
+
 
 vim.pack.add({
     { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
@@ -25,8 +27,12 @@ vim.pack.add({
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
     { src = "https://github.com/nvim-mini/mini.pick" },
+    { src = "https://github.com/stevearc/oil.nvim" },
 })
 
+
+require("mini.pick").setup()
+require("oil").setup()
 
 vim.lsp.enable({ "lua_ls" })
 
