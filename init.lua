@@ -19,11 +19,13 @@ vim.keymap.set('n', '<leader>w', ":write<CR>")
 vim.keymap.set('n', '<leader>q', ":quit<CR>")
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader><leader>', ":Pick files<CR>")
-
+vim.keymap.set('n', '<leader>d', ":Oil<CR>")
 
 vim.pack.add({
     { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/mason-org/mason.nvim" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
     { src = "https://github.com/nvim-mini/mini.pick" },
@@ -33,9 +35,10 @@ vim.pack.add({
 
 require("mini.pick").setup()
 require("oil").setup()
+require("mason").setup()
 
-vim.lsp.enable({ "lua_ls" })
-
+vim.lsp.enable({ "lua_ls", "pyright" })
+require("nvim-treesitter").install({"javascript", "python", "html", "lua"})
 
 require("catppuccin").setup {
     color_overrides = {
