@@ -17,6 +17,7 @@ vim.g.mapleader = " "
 vim.keymap.set('n', '<leader>o', ":update<CR> :source<CR>")
 vim.keymap.set('n', '<leader>w', ":write<CR>")
 vim.keymap.set('n', '<leader>q', ":quit<CR>")
+vim.keymap.set('n', '<leader>r', ":restart<CR>")
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader><leader>', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>d', ":Oil<CR>")
@@ -38,7 +39,23 @@ require("oil").setup()
 require("mason").setup()
 
 vim.lsp.enable({ "lua_ls", "pyright" })
-require("nvim-treesitter").install({"javascript", "python", "html", "lua"})
+require("nvim-treesitter").setup({
+    ensure_installed = {
+        "lua",
+        "python",
+        "bash",
+        "json",
+        "javascript"
+    },
+    highlight = {
+        enable = true
+    },
+
+    indent = {
+        enable = true
+    }
+})
+
 
 require("catppuccin").setup {
     color_overrides = {
@@ -50,4 +67,7 @@ require("catppuccin").setup {
     }
 }
 require("lualine").setup()
+
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
 vim.cmd("colorscheme catppuccin-mocha")
