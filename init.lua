@@ -57,17 +57,24 @@ require("nvim-treesitter").setup({
 })
 
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'python', 'lua', 'javascipt', 'bash', 'json' },
+  callback = function() vim.treesitter.start() end,
+})
+
+
 require("catppuccin").setup {
     color_overrides = {
+        all = {
+                text = "#ffffff"
+        },
         mocha = {
             base = "#000000",
             mantle = "#000000",
             crust = "#000000",
-        }
+        },
     }
 }
 require("lualine").setup()
 
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
 vim.cmd("colorscheme catppuccin-mocha")
