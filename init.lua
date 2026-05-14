@@ -12,6 +12,8 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.signcolumn = "yes"
+vim.opt.foldenable = false
+
 
 vim.g.mapleader = " "
 vim.keymap.set('n', '<leader>o', ":update<CR> :source<CR>")
@@ -31,6 +33,8 @@ vim.pack.add({
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
     { src = "https://github.com/nvim-mini/mini.pick" },
     { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://github.com/saghen/blink.lib" },
+    { src = "https://github.com/saghen/blink.cmp" },
 })
 
 
@@ -57,9 +61,43 @@ require("nvim-treesitter").setup({
 })
 
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'python', 'lua', 'javascipt', 'bash', 'json' },
-  callback = function() vim.treesitter.start() end,
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    pcall(vim.treesitter.start)
+
+    vim.bo.indentexpr =
+      "v:lua.require'nvim-treesitter'.indentexpr()"
+
+    vim.wo.foldexpr =
+      "v:lua.vim.treesitter.foldexpr()"
+
+    vim.wo.foldmethod = "expr"
+  end,
+})
+
+
+require("blink.cmp").setup({
+  keymap = {
+    preset = "default",
+  },
+
+  appearance = {
+    nerd_font_variant = "mono",
+  },
+
+  completion = {
+    documentation = {
+      auto_show = true,
+    },
+  },
+
+  sources = {
+    default = { "lsp", "path", "snippets", "buffer" },
+  },
+
+  fuzzy = {
+    implementation = "prefer_rust_with_warning",
+  },
 })
 
 
@@ -78,3 +116,6 @@ require("catppuccin").setup {
 require("lualine").setup()
 
 vim.cmd("colorscheme catppuccin-mocha")
+
+
+
