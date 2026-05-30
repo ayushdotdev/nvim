@@ -40,9 +40,9 @@
       "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
     },
-    "vague.nvim": {
-      "rev": "fd58046b9d64259d9785e4aeb6d6f494c6943cad",
-      "src": "https://github.com/vague-theme/vague.nvim"
+    "tokyo-night-dark.nvim": {
+      "rev": "c1e2303160148a808e94424d5203fe6c7973b4d3",
+      "src": "https://github.com/sudoscrawl/tokyo-night-dark.nvim"
     }
   }
 }

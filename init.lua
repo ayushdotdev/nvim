@@ -1,6 +1,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.fillchars = { eob = " " }
+vim.opt.cursorline = true
 
 vim.opt.swapfile = false
 vim.opt.cmdheight = 0
@@ -13,7 +14,6 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.signcolumn = "yes"
 vim.opt.foldenable = false
-
 
 vim.g.mapleader = " "
 vim.keymap.set('n', '<leader>o', ":update<CR> :source<CR>")
@@ -35,6 +35,7 @@ vim.pack.add({
     { src = "https://github.com/stevearc/oil.nvim" },
     { src = "https://github.com/saghen/blink.lib" },
     { src = "https://github.com/saghen/blink.cmp" },
+    { src = "https://github.com/sudoscrawl/tokyo-night-dark.nvim" },
 })
 
 
@@ -116,6 +117,3 @@ require("catppuccin").setup {
 require("lualine").setup()
 
 vim.cmd("colorscheme catppuccin-mocha")
-
-
-
