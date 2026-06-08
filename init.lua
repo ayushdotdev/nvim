@@ -23,6 +23,7 @@ vim.keymap.set('n', '<leader>r', ":restart<CR>")
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader><leader>', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>d', ":Oil<CR>")
+vim.keymap.set('n', 'zz', ':wq<CR>')
 
 vim.pack.add({
     { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
@@ -43,14 +44,15 @@ require("mini.pick").setup()
 require("oil").setup()
 require("mason").setup()
 
-vim.lsp.enable({ "lua_ls", "pyright" })
+vim.lsp.enable({ "lua_ls", "pyright", "clangd"})
 require("nvim-treesitter").setup({
     ensure_installed = {
         "lua",
         "python",
         "bash",
         "json",
-        "javascript"
+        "javascript",
+        "c",
     },
     highlight = {
         enable = true
