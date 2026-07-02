@@ -23,7 +23,12 @@ vim.keymap.set('n', '<leader>r', ":restart<CR>")
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader><leader>', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>d', ":Oil<CR>")
-vim.keymap.set('n', 'zz', ':wq<CR>')
+vim.keymap.set('n', 'zz', ":wq<CR>")
+
+vim.keymap.set('n', 'bn', ":bnext<CR>")
+vim.keymap.set('n', 'bp', ":bprevious<CR>")
+vim.keymap.set('n', 'bd', ":bdelete<CR>")
+
 
 local gh = function (x)
     return "https://github.com/" .. x
@@ -49,6 +54,8 @@ vim.pack.add({
     { src = gh("saghen/blink.cmp") },
     { src = gh("sudoscrawl/tokyo-night-dark.nvim") },
     { src = gh("MeanderingProgrammer/render-markdown.nvim")},
+    { src = gh("akinsho/bufferline.nvim")},
+    { src = gh("lewis6991/gitsigns.nvim")},
 })
 
 
@@ -57,6 +64,8 @@ require("oil").setup()
 require("mason").setup()
 -- require("noice").setup()
 require("render-markdown").setup({})
+require("bufferline").setup()
+require("gitsigns").setup()
 
 vim.lsp.enable({ "lua_ls", "pyright", "clangd"})
 require("nvim-treesitter").setup({
