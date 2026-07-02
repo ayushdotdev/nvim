@@ -4,7 +4,7 @@ vim.opt.fillchars = { eob = " " }
 vim.opt.cursorline = true
 
 vim.opt.swapfile = false
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
 
 vim.opt.wrap = false
 vim.opt.tabstop = 4
@@ -25,25 +25,38 @@ vim.keymap.set('n', '<leader><leader>', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>d', ":Oil<CR>")
 vim.keymap.set('n', 'zz', ':wq<CR>')
 
+local gh = function (x)
+    return "https://github.com/" .. x
+end
+
+local cb = function (x)
+    return "https://codeberg.org/" .. x
+end
+
 vim.pack.add({
-    { src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
-    { src = "https://github.com/neovim/nvim-lspconfig" },
-    { src = "https://github.com/mason-org/mason.nvim" },
-    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-    { src = "https://github.com/nvim-tree/nvim-web-devicons" },
-    { src = "https://github.com/nvim-lualine/lualine.nvim" },
-    { src = "https://github.com/nvim-mini/mini.pick" },
-    { src = "https://github.com/stevearc/oil.nvim" },
-    { src = "https://github.com/saghen/blink.lib" },
-    { src = "https://github.com/saghen/blink.cmp" },
-    { src = "https://github.com/sudoscrawl/tokyo-night-dark.nvim" },
-    { src = "https://github.com/lukas-reineke/indent-blankline.nvim"},
+    { src = gh("nvim-lspconfig") },
+    { src = gh("rebelot/kanagawa.nvim")},
+    { src = gh("vossenwout/guts.nvim")},
+    { src = gh("mason-org/mason.nvim") },
+    { src = gh("nvim-treesitter/nvim-treesitter") },
+    { src = gh("nvim-tree/nvim-web-devicons") },
+    { src = gh("nvim-lualine/lualine.nvim") },
+    { src = gh("nvim-mini/mini.pick") },
+    { src = gh("stevearc/oil.nvim") },
+--    { src = gh("rcarriga/nvim-notify")},
+--    { src = gh("folke/noice.nvim")},
+    { src = gh("saghen/blink.lib") },
+    { src = gh("saghen/blink.cmp") },
+    { src = gh("sudoscrawl/tokyo-night-dark.nvim") },
+    { src = gh("MeanderingProgrammer/render-markdown.nvim")},
 })
 
 
 require("mini.pick").setup()
 require("oil").setup()
 require("mason").setup()
+-- require("noice").setup()
+require("render-markdown").setup({})
 
 vim.lsp.enable({ "lua_ls", "pyright", "clangd"})
 require("nvim-treesitter").setup({
@@ -104,7 +117,7 @@ require("blink.cmp").setup({
   },
 })
 
-
+--[[
 require("catppuccin").setup {
     color_overrides = {
         all = {
@@ -117,12 +130,13 @@ require("catppuccin").setup {
         },
     }
 }
+]]
 require("lualine").setup()
 
-vim.cmd("colorscheme catppuccin-mocha")
+vim.cmd("colorscheme guts")
 vim.lsp.buf.hover()
 
-
+--[[
 local highlight = {
     "RainbowRed",
     "RainbowYellow",
@@ -147,3 +161,5 @@ hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 end)
 
 require("ibl").setup { indent = { highlight = highlight } }
+
+]]
