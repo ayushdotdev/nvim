@@ -3,8 +3,14 @@ vim.opt.relativenumber = true
 vim.opt.fillchars = { eob = " " }
 vim.opt.cursorline = true
 
+vim.opt.confirm = true
 vim.opt.swapfile = false
 -- vim.opt.cmdheight = 0
+
+vim.opt.ttimeoutlen = 1
+
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 vim.opt.wrap = false
 vim.opt.tabstop = 4
@@ -20,7 +26,6 @@ vim.keymap.set('n', '<leader>o', ":update<CR> :source<CR>")
 vim.keymap.set('n', '<leader>w', ":write<CR>")
 vim.keymap.set('n', '<leader>q', ":quit<CR>")
 vim.keymap.set('n', '<leader>r', ":restart<CR>")
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader><leader>', ":Pick files<CR>")
 vim.keymap.set('n', '<leader>d', ":Oil<CR>")
 vim.keymap.set('n', 'zz', ":wq<CR>")
@@ -28,6 +33,17 @@ vim.keymap.set('n', 'zz', ":wq<CR>")
 vim.keymap.set('n', 'bn', ":bnext<CR>")
 vim.keymap.set('n', 'bp', ":bprevious<CR>")
 vim.keymap.set('n', 'bd', ":bdelete<CR>")
+
+
+vim.diagnostic.config({
+    underline = false,
+    severity_sort = true,
+    update_in_insert = false,
+    float = { source = "if_many" },
+    jump = { float = true },
+})
+
+vim.keymap.set('n', '<leader>l', vim.diagnostic.open_float)
 
 
 local gh = function (x)
@@ -39,8 +55,10 @@ local cb = function (x)
 end
 
 vim.pack.add({
-    { src = gh("nvim-lspconfig") },
+    { src = gh("neovim/nvim-lspconfig") },
     { src = gh("rebelot/kanagawa.nvim")},
+    { src = gh("vague-theme/vague.nvim")},
+    { src = gh("catppuccin/nvim"), name = "catppuccin"},
     { src = gh("vossenwout/guts.nvim")},
     { src = gh("mason-org/mason.nvim") },
     { src = gh("nvim-treesitter/nvim-treesitter") },
@@ -52,7 +70,7 @@ vim.pack.add({
 --    { src = gh("folke/noice.nvim")},
     { src = gh("saghen/blink.lib") },
     { src = gh("saghen/blink.cmp") },
-    { src = gh("sudoscrawl/tokyo-night-dark.nvim") },
+    { src = gh("sudoscrawl/midnight.nvim") },
     { src = gh("MeanderingProgrammer/render-markdown.nvim")},
     { src = gh("akinsho/bufferline.nvim")},
     { src = gh("lewis6991/gitsigns.nvim")},
@@ -126,7 +144,6 @@ require("blink.cmp").setup({
   },
 })
 
---[[
 require("catppuccin").setup {
     color_overrides = {
         all = {
@@ -139,10 +156,11 @@ require("catppuccin").setup {
         },
     }
 }
-]]
+
 require("lualine").setup()
 
-vim.cmd("colorscheme guts")
+vim.opt.termguicolors = true
+vim.cmd("colorscheme catppuccin-mocha")
 vim.lsp.buf.hover()
 
 --[[

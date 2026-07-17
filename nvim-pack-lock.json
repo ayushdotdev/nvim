@@ -1,7 +1,11 @@
 {
   "plugins": {
+    "ayu-vim": {
+      "rev": "01faacb4cb76e8cf72ad9858c581d80876260ab3",
+      "src": "https://github.com/ayu-theme/ayu-vim"
+    },
     "blink.cmp": {
-      "rev": "2ef3db111181c5eef22a462aa0122349a6027f28",
+      "rev": "71dc7545c1f399c7f76eeef80efa1d8bda0ff471",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
@@ -40,6 +44,10 @@
       "rev": "e54f5bf5f12c560da31c17eee5b3e1bd369f3ff9",
       "src": "https://github.com/mason-org/mason.nvim"
     },
+    "midnight.nvim": {
+      "rev": "51ff35497dd1e81149b1d2ab7e962d2ba25f516e",
+      "src": "https://github.com/sudoscrawl/midnight.nvim"
+    },
     "mini.pick": {
       "rev": "308f16fa39165865ec8d7e0e3e6fb031aa6105a0",
       "src": "https://github.com/nvim-mini/mini.pick"
@@ -49,7 +57,7 @@
       "src": "https://github.com/folke/noice.nvim"
     },
     "nvim-lspconfig": {
-      "rev": "451d4ef9abd4f0f08e379ef0d55d1c391b6125a7",
+      "rev": "5955a100ae7155962330643924e21a798b9bdc91",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-notify": {
@@ -73,12 +81,20 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "tokyo-night-dark.nvim": {
-      "rev": "c1e2303160148a808e94424d5203fe6c7973b4d3",
+      "rev": "51ff35497dd1e81149b1d2ab7e962d2ba25f516e",
       "src": "https://github.com/sudoscrawl/tokyo-night-dark.nvim"
     },
     "tokyonight.nvim": {
       "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
       "src": "https://github.com/folke/tokyonight.nvim"
+    },
+    "vague.nvim": {
+      "rev": "49fe06ad33d8847b931ba4279197bda222374cd1",
+      "src": "https://github.com/vague-theme/vague.nvim"
+    },
+    "vim": {
+      "rev": "99d4b7bf1a0a12f2d78f35a159384b1eb8aa9c15",
+      "src": "https://github.com/mountain-theme/vim"
     }
   }
 }
