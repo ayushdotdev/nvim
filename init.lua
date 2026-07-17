@@ -120,7 +120,9 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
-require("blink.cmp").setup({
+local cmp = require("blink.cmp")
+cmp.build():pwait()
+cmp.setup({
   keymap = {
     preset = "default",
   },
