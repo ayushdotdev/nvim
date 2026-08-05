@@ -3,10 +3,14 @@ vim.opt.relativenumber = true
 vim.opt.fillchars = { eob = " " }
 vim.opt.cursorline = true
 
+vim.opt.fileencoding = "utf-8"
+
 vim.opt.confirm = true
 vim.opt.swapfile = false
 -- vim.opt.cmdheight = 0
+vim.opt.showcmd = false
 
+vim.opt.updatetime = 100
 vim.opt.ttimeoutlen = 1
 
 vim.opt.ignorecase = true
