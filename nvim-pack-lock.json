@@ -40,6 +40,10 @@
       "rev": "131a558e13f9f28b15cd235557150ccb23f89286",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
+    "luna.nvim": {
+      "rev": "6e3174384dbaf5a79be789323790f78f4c47cc5a",
+      "src": "https://github.com/wtfox/luna.nvim"
+    },
     "mason.nvim": {
       "rev": "e54f5bf5f12c560da31c17eee5b3e1bd369f3ff9",
       "src": "https://github.com/mason-org/mason.nvim"

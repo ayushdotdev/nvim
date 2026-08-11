@@ -64,6 +64,7 @@ vim.pack.add({
     { src = gh("vague-theme/vague.nvim")},
     { src = gh("catppuccin/nvim"), name = "catppuccin"},
     { src = gh("vossenwout/guts.nvim")},
+    { src = gh("wtfox/luna.nvim")},
     { src = gh("mason-org/mason.nvim") },
     { src = gh("nvim-treesitter/nvim-treesitter") },
     { src = gh("nvim-tree/nvim-web-devicons") },
@@ -166,7 +167,7 @@ require("catppuccin").setup {
 require("lualine").setup()
 
 vim.opt.termguicolors = true
-vim.cmd("colorscheme catppuccin-mocha")
+vim.cmd("colorscheme luna")
 vim.lsp.buf.hover()
 
 --[[
