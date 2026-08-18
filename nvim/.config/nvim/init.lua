@@ -79,6 +79,7 @@ vim.pack.add({
     { src = gh("MeanderingProgrammer/render-markdown.nvim")},
     { src = gh("akinsho/bufferline.nvim")},
     { src = gh("lewis6991/gitsigns.nvim")},
+    { src = gh("ajbucci/ipynb.nvim")},
 })
 
 
@@ -89,6 +90,7 @@ require("mason").setup()
 require("render-markdown").setup({})
 require("bufferline").setup()
 require("gitsigns").setup()
+require("ipynb").setup()
 
 vim.lsp.enable({ "lua_ls", "pyright", "clangd"})
 require("nvim-treesitter").setup({
