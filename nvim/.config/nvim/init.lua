@@ -73,8 +73,8 @@ vim.pack.add({
     { src = gh("stevearc/oil.nvim") },
 --    { src = gh("rcarriga/nvim-notify")},
 --    { src = gh("folke/noice.nvim")},
-    { src = gh("saghen/blink.lib") },
-    { src = gh("saghen/blink.cmp") },
+--    { src = gh("saghen/blink.lib") },
+--  { src = gh("saghen/blink.cmp") },
     { src = gh("sudoscrawl/midnight.nvim") },
     { src = gh("MeanderingProgrammer/render-markdown.nvim")},
     { src = gh("akinsho/bufferline.nvim")},
@@ -127,7 +127,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
-local cmp = require("blink.cmp")
+--[[ local cmp = require("blink.cmp")
 cmp.build():pwait()
 cmp.setup({
   keymap = {
@@ -152,9 +152,12 @@ cmp.setup({
     implementation = "prefer_rust_with_warning",
   },
 })
-
+]]
 require("catppuccin").setup {
-    color_overrides = {
+    
+    transparent_background = true,
+
+ --[[   color_overrides = {
         all = {
                 text = "#ffffff"
         },
@@ -163,13 +166,13 @@ require("catppuccin").setup {
             mantle = "#000000",
             crust = "#000000",
         },
-    }
+    } ]]
 }
 
 require("lualine").setup()
 
 vim.opt.termguicolors = true
-vim.cmd("colorscheme luna")
+vim.cmd("colorscheme catppuccin-mocha")
 vim.lsp.buf.hover()
 
 --[[
