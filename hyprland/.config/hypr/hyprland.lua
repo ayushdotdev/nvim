@@ -1,15 +1,4 @@
--- This is an example Hyprland Lua config file.
--- Refer to the wiki for more information.
--- https://wiki.hypr.land/Configuring/Start/
-
--- Please note not all available settings / options are set here.
--- For a full list, see the wiki
-
--- You can (and should!!) split this configuration into multiple files
--- Create your files separately and then require them like this:
--- require("myColors")
-
-
+require("modules.keybinds")
 ------------------
 ---- MONITORS ----
 ------------------
@@ -254,7 +243,6 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
