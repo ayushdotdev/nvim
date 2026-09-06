@@ -4,7 +4,7 @@ local config = {
         browser = "firefox",
         file_manager = "dolphin",
     },
-
+    wallpaper = "~/Pictures/wallpapers/gruvbox_forest-4.png",
     modifier = "SUPER"
 }
 

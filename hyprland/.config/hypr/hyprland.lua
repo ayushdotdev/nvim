@@ -1,6 +1,7 @@
 require("modules.keybinds")
 require("modules.monitors")
 require("modules.appearance")
+require("modules.startup")
 -------------------
 ---- AUTOSTART ----
 -------------------
