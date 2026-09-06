@@ -1,7 +1,7 @@
 local config = {
     apps = {
         terminal = "kitty",
-        browser = "firefox",
+        browser = "zen-browser",
         file_manager = "dolphin",
         launcher = "wofi"
     },

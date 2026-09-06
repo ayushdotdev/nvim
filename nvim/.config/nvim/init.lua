@@ -172,7 +172,7 @@ require("catppuccin").setup {
 require("lualine").setup()
 
 vim.opt.termguicolors = true
-vim.cmd("colorscheme catppuccin-mocha")
+vim.cmd("colorscheme guts")
 vim.lsp.buf.hover()
 
 --[[

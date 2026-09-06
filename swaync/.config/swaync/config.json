@@ -1,0 +1,43 @@
+{
+    "positionX": "right",
+    "positionY": "top",
+
+    "control-center-width": 380,
+    "control-center-height": 700,
+
+    "notification-window-width": 380,
+
+    "notification-icon-size": 48,
+
+    "timeout": 6,
+    "timeout-low": 3,
+    "timeout-critical": 0,
+
+    "fit-to-screen": true,
+    "control-center-margin-top": 10,
+    "control-center-margin-right": 10,
+    "control-center-margin-bottom": 10,
+
+    "notification-window-margin": 10,
+
+    "keyboard-shortcuts": true,
+    "image-visibility": "when-available",
+
+    "widgets": [
+        "title",
+        "dnd",
+        "notifications"
+    ],
+
+    "widget-config": {
+        "title": {
+            "text": "Notifications",
+            "button-text": "Clear",
+            "clear-all": true
+        },
+
+        "dnd": {
+            "text": "Do Not Disturb"
+        }
+    }
+}
