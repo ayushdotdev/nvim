@@ -14,3 +14,4 @@ hl.bind(config.modifier .. " + down", hl.dsp.focus({ direction = "down" }))
 -- APPLICATIONS
 hl.bind(config.modifier .. " + T", hl.dsp.exec_cmd(config.apps.terminal))
 hl.bind(config.modifier .. " + B", hl.dsp.exec_cmd(config.apps.browser))
+hl.bind(config.modifier .. " + E", hl.dsp.exec_cmd(config.apps.file_manager))
