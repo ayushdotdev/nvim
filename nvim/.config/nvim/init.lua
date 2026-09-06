@@ -60,9 +60,6 @@ end
 
 vim.pack.add({
     { src = gh("neovim/nvim-lspconfig") },
-    { src = gh("rebelot/kanagawa.nvim")},
-    { src = gh("vague-theme/vague.nvim")},
-    { src = gh("catppuccin/nvim"), name = "catppuccin"},
     { src = gh("vossenwout/guts.nvim")},
     { src = gh("wtfox/luna.nvim")},
     { src = gh("mason-org/mason.nvim") },
@@ -71,10 +68,8 @@ vim.pack.add({
     { src = gh("nvim-lualine/lualine.nvim") },
     { src = gh("nvim-mini/mini.pick") },
     { src = gh("stevearc/oil.nvim") },
---    { src = gh("rcarriga/nvim-notify")},
---    { src = gh("folke/noice.nvim")},
---    { src = gh("saghen/blink.lib") },
---  { src = gh("saghen/blink.cmp") },
+    { src = gh("saghen/blink.lib") },
+    { src = gh("saghen/blink.cmp") },
     { src = gh("sudoscrawl/midnight.nvim") },
     { src = gh("MeanderingProgrammer/render-markdown.nvim")},
     { src = gh("akinsho/bufferline.nvim")},
@@ -127,7 +122,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
---[[ local cmp = require("blink.cmp")
+local cmp = require("blink.cmp")
 cmp.build():pwait()
 cmp.setup({
   keymap = {
@@ -152,53 +147,9 @@ cmp.setup({
     implementation = "prefer_rust_with_warning",
   },
 })
-]]
-require("catppuccin").setup {
-    
-    transparent_background = true,
-
- --[[   color_overrides = {
-        all = {
-                text = "#ffffff"
-        },
-        mocha = {
-            base = "#000000",
-            mantle = "#000000",
-            crust = "#000000",
-        },
-    } ]]
-}
 
 require("lualine").setup()
 
 vim.opt.termguicolors = true
 vim.cmd("colorscheme guts")
 vim.lsp.buf.hover()
-
---[[
-local highlight = {
-    "RainbowRed",
-    "RainbowYellow",
-    "RainbowBlue",
-    "RainbowOrange",
-    "RainbowGreen",
-    "RainbowViolet",
-    "RainbowCyan",
-}
-
-local hooks = require "ibl.hooks"
--- create the highlight groups in the highlight setup hook, so they are reset
--- every time the colorscheme changes
-hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-    vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-    vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-    vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-    vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-    vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-    vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-    vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-end)
-
-require("ibl").setup { indent = { highlight = highlight } }
-
-]]
