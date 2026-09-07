@@ -3,6 +3,8 @@ local config = require("config")
 
 hl.bind(config.modifier .. " + Q", hl.dsp.window.close())
 
+hl.bind(config.modifier .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(config.modifier .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- FOCUS
 hl.bind(config.modifier .. " + left", hl.dsp.focus({ direction = "left" }))
@@ -16,3 +18,29 @@ hl.bind(config.modifier .. " + T", hl.dsp.exec_cmd(config.apps.terminal))
 hl.bind(config.modifier .. " + B", hl.dsp.exec_cmd(config.apps.browser))
 hl.bind(config.modifier .. " + E", hl.dsp.exec_cmd(config.apps.file_manager))
 hl.bind(config.modifier .. " + R", hl.dsp.exec_cmd(config.apps.launcher))
+
+
+-- WORKSPACES
+for i = 1, 10 do
+    local key = i % 10
+
+    hl.bind(
+        config.modifier .. " + " .. key, 
+        hl.dsp.focus({ workspace = i })
+    )
+
+    hl.bind(
+        config.modifier .. " + SHIFT + " .. key,
+        hl.dsp.window.move({ workspace = i })
+    
+    )
+end
+
+-- SPECIAL KEYS
+hl.bind(config.modifier .. " + F6", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
+hl.bind(config.modifier .. " + F5", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
+hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
+hl.bind(config.modifier .. " + F9",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
+hl.bind(config.modifier .. " + F8",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+
