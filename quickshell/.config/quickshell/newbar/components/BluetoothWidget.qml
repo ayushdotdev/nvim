@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Io
 import Quickshell.Bluetooth
 import "../theme"
 
@@ -30,6 +31,79 @@ Item {
         if (!isEnabled) return "󰂲";
         if (connectedCount > 0) return "󰂯";
         return "󰂴";
+    }
+
+    // ─────────────────────────────────────────────────────────────
+    // BLUETOOTHCTL PROCESSES
+    // ─────────────────────────────────────────────────────────────
+    Process {
+        id: btPowerOn
+        command: ["bluetoothctl", "power", "on"]
+        running: false
+    }
+
+    Process {
+        id: btPowerOff
+        command: ["bluetoothctl", "power", "off"]
+        running: false
+    }
+
+    Process {
+        id: btScanOn
+        command: ["bluetoothctl", "scan", "on"]
+        running: false
+    }
+
+    Process {
+        id: btScanOff
+        command: ["bluetoothctl", "scan", "off"]
+        running: false
+    }
+
+    // Per-device connect/disconnect processes
+    Process {
+        id: btConnectProc
+        property string targetAddress: ""
+        command: ["bluetoothctl", "connect", targetAddress]
+        running: false
+    }
+
+    Process {
+        id: btDisconnectProc
+        property string targetAddress: ""
+        command: ["bluetoothctl", "disconnect", targetAddress]
+        running: false
+    }
+
+    // Stop scanning when popup closes
+    onIsEnabledChanged: {
+        if (!isEnabled && btPopup.visible) {
+            btScanOff.running = true;
+        }
+    }
+
+    function toggleBluetooth() {
+        if (root.isEnabled) {
+            btScanOff.running = true;
+            btPowerOff.running = true;
+            // Also update via API for immediate UI feedback
+            if (root.adapter) root.adapter.enabled = false;
+        } else {
+            btPowerOn.running = true;
+            if (root.adapter) root.adapter.enabled = true;
+        }
+    }
+
+    function openPopup() {
+        btPopup.visible = true;
+        if (root.isEnabled) {
+            btScanOn.running = true;
+        }
+    }
+
+    function closePopup() {
+        btPopup.visible = false;
+        btScanOff.running = true;
     }
 
     // ─────────────────────────────────────────────────────────────
@@ -75,7 +149,7 @@ Item {
             anchors.fill: parent
             hoverEnabled: true
             cursorShape: Qt.PointingHandCursor
-            onClicked: btPopup.visible = !btPopup.visible
+            onClicked: btPopup.visible ? root.closePopup() : root.openPopup()
         }
     }
 
@@ -97,6 +171,12 @@ Item {
         color: "transparent"
         visible: false
         grabFocus: true
+
+        onVisibleChanged: {
+            if (!visible) {
+                btScanOff.running = true;
+            }
+        }
 
         Rectangle {
             anchors.fill: parent
@@ -148,7 +228,7 @@ Item {
                         text: root.isEnabled
                             ? (root.connectedCount > 0
                                 ? root.connectedCount + (root.connectedCount > 1 ? " devices" : " device") + " connected"
-                                : "No devices connected")
+                                : "Scanning for devices…")
                             : "Disabled"
                         color: root.isEnabled ? Theme.fgMuted : Theme.fgDark
                         font { family: Theme.fontMono; pixelSize: Theme.fontSizeXs }
@@ -174,9 +254,7 @@ Item {
                     MouseArea {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: {
-                            if (root.adapter) root.adapter.enabled = !root.isEnabled;
-                        }
+                        onClicked: root.toggleBluetooth()
                     }
                 }
             }
@@ -306,7 +384,24 @@ Item {
                                 anchors.fill: parent
                                 hoverEnabled: true
                                 cursorShape: Qt.PointingHandCursor
-                                onClicked: modelData.connected = !modelData.connected
+                                onClicked: {
+                                    var addr = modelData.address || "";
+                                    if (modelData.connected) {
+                                        if (addr !== "") {
+                                            btDisconnectProc.targetAddress = addr;
+                                            btDisconnectProc.running = true;
+                                        } else {
+                                            modelData.connected = false;
+                                        }
+                                    } else {
+                                        if (addr !== "") {
+                                            btConnectProc.targetAddress = addr;
+                                            btConnectProc.running = true;
+                                        } else {
+                                            modelData.connected = true;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
